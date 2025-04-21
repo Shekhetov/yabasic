@@ -53,7 +53,9 @@ along with this library; if not, see <http://www.gnu.org/licenses/>.
       <start>[({]</start>
       <end>[)}]</end>
       <include>
+       <context ref="number"/>
        <context ref="operator"/> 
+       <context ref="keywords"/> 
        <context ref="commands"/> 
        <context ref="bracket"/>
       </include>
