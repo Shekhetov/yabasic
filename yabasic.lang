@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Автор: Anton Shekehtov <shekhetov@gmail.com>
+Copyright (C) 2025 Anton Shekehtov https://yabasic.ru
+
+GtkSourceView is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+GtkSourceView is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with this library; if not, see <http://www.gnu.org/licenses/>.
+-->
+
+<language id="yabasic" _name="Yabasic" version="2.0" _section="Script">
+  <metadata>
+    <property name="globs">*.yab;*.yb;*.bas</property>
+    <property name="line-comment-start">#</property>
+  </metadata>
+
+  <styles>
+    <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="string" name="String" map-to="def:string"/>
+    <style id="bracket" name="Bracket" map-to="def:bracket"/>
+    <style id="number" name="Number" map-to="def:decimal"/>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="commands" name="Command" map-to="def:keyword"/>
+    <style id="operator" name="Operator" map-to="def:operator"/>
+  </styles>
+
+  <default-regex-options case-sensitive="false"/>
+
+  <definitions>
+
+    <context id="comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
+      <start>^\s*(?:rem\b|#|'|//)|\s*(?:rem\b|//)</start>
+      <include>
+        <context ref="def:in-comment"/>
+      </include>
+    </context>
+
+    <context id="string" style-ref="string">
+      <start>"</start>
+      <end>"</end>
+    </context>
+
+    <context id="bracket" style-ref="string">
+      <start>[({]</start>
+      <end>[)}]</end>
+      <include>
+       <context ref="operator"/> 
+       <context ref="commands"/> 
+       <context ref="bracket"/>
+      </include>
+    </context>
+
+    <context id="number" style-ref="number">
+      <match>-?[0-9]+(\.[0-9]+)?</match>
+    </context>
+   
+    <context id="keywords" style-ref="keyword">
+      <keyword>and</keyword>
+      <keyword>or</keyword>
+      <keyword>not</keyword>
+      <keyword>break</keyword>
+      <keyword>case</keyword>
+      <keyword>continue</keyword>
+      <keyword>default</keyword>
+      <keyword>do</keyword>
+      <keyword>else</keyword>
+      <keyword>elsif</keyword>
+      <keyword>end</keyword>
+      <keyword>endif</keyword>
+      <keyword>end sub</keyword>
+      <keyword>false</keyword>
+      <keyword>for</keyword>
+      <keyword>if</keyword>
+      <keyword>import</keyword>
+      <keyword>label</keyword>
+      <keyword>local</keyword>
+      <keyword>loop</keyword>
+      <keyword>on gosub</keyword>
+      <keyword>on goto</keyword>
+      <keyword>on interrupt</keyword>
+      <keyword>repeat</keyword>
+      <keyword>return</keyword>
+      <keyword>static</keyword>
+      <keyword>step</keyword>
+      <keyword>switch</keyword>
+      <keyword>then</keyword>
+      <keyword>true</keyword>
+      <keyword>until</keyword>
+      <keyword>while</keyword>
+    </context>
+
+    <context id="commands" style-ref="keyword">
+      <keyword>abs</keyword>
+      <keyword>acos</keyword>
+      <keyword>arraydim</keyword>
+      <keyword>arraysize</keyword>
+      <keyword>asc</keyword>
+      <keyword>asin</keyword>
+      <keyword>at</keyword>
+      <keyword>atan</keyword>
+      <keyword>backcolor</keyword>
+      <keyword>beep</keyword>
+      <keyword>bell</keyword>
+      <keyword>bin$</keyword>
+      <keyword>bind</keyword>
+      <keyword>bitnot</keyword>
+      <keyword>box</keyword>
+      <keyword>ceil</keyword>
+      <keyword>chomp$</keyword>
+      <keyword>chr$</keyword>
+      <keyword>circle</keyword>
+      <keyword>clear</keyword>
+      <keyword>clear screen</keyword>
+      <keyword>clear window</keyword>
+      <keyword>close</keyword>
+      <keyword>close curve</keyword>
+      <keyword>close printer</keyword>
+      <keyword>close window</keyword>
+      <keyword>color</keyword>
+      <keyword>compile</keyword>
+      <keyword>cos</keyword>
+      <keyword>data</keyword>
+      <keyword>date$</keyword>
+      <keyword>dec</keyword>
+      <keyword>dim</keyword>
+      <keyword>eof</keyword>
+      <keyword>eor</keyword>
+      <keyword>error</keyword>
+      <keyword>euler</keyword>
+      <keyword>eval</keyword>
+      <keyword>eval$</keyword>
+      <keyword>execute</keyword>
+      <keyword>execute$</keyword>
+      <keyword>exit</keyword>
+      <keyword>exp</keyword>
+      <keyword>foreign_buffer_alloc$</keyword>
+      <keyword>foreign_buffer_dump$</keyword>
+      <keyword>foreign_buffer_free</keyword>
+      <keyword>foreign_buffer_get</keyword>
+      <keyword>foreign_buffer_get$</keyword>
+      <keyword>foreign_buffer_get_buffer</keyword>
+      <keyword>foreign_buffer_set</keyword>
+      <keyword>foreign_buffer_set_buffer</keyword>
+      <keyword>foreign_buffer_size</keyword>
+      <keyword>foreign_function_call</keyword>
+      <keyword>foreign_function_call$</keyword>
+      <keyword>foreign_function_size</keyword>
+      <keyword>frac</keyword>
+      <keyword>getbit$</keyword>
+      <keyword>getscreen$</keyword>
+      <keyword>glob</keyword>
+      <keyword>gosub</keyword>
+      <keyword>goto</keyword>
+      <keyword>hex$</keyword>
+      <keyword>import</keyword>
+      <keyword>inkey$</keyword>
+      <keyword>input</keyword>
+      <keyword>instr</keyword>
+      <keyword>int</keyword>
+      <keyword>label</keyword>
+      <keyword>left$</keyword>
+      <keyword>len</keyword>
+      <keyword>line</keyword>
+      <keyword>line input</keyword>
+      <keyword>log</keyword>
+      <keyword>mouseb</keyword>
+      <keyword>mousemod</keyword>
+      <keyword>mousex</keyword>
+      <keyword>mousey</keyword>
+      <keyword>new curve</keyword>
+      <keyword>next</keyword>
+      <keyword>numparams</keyword>
+      <keyword>open</keyword>
+      <keyword>open printer</keyword>
+      <keyword>open window</keyword>
+      <keyword>pause</keyword>
+      <keyword>peek</keyword>
+      <keyword>peek$</keyword>
+      <keyword>pi</keyword>
+      <keyword>poke</keyword>
+      <keyword>print</keyword>
+      <keyword>print color</keyword>
+      <keyword>print colour</keyword>
+      <keyword>putbit</keyword>
+      <keyword>putscreen</keyword>
+      <keyword>ran</keyword>
+      <keyword>read</keyword>
+      <keyword>rectangle</keyword>
+      <keyword>redim</keyword>
+      <keyword>restore</keyword>
+      <keyword>right$</keyword>
+      <keyword>rinstr</keyword>
+      <keyword>round</keyword>
+      <keyword>rtrim$</keyword>
+      <keyword>screen</keyword>
+      <keyword>seek</keyword>
+      <keyword>sig</keyword>
+      <keyword>sin</keyword>
+      <keyword>shl</keyword>
+      <keyword>shr</keyword>
+      <keyword>sleep</keyword>
+      <keyword>split</keyword>
+      <keyword>sqr</keyword>
+      <keyword>sqrt</keyword>
+      <keyword>str$</keyword>
+      <keyword>sub</keyword>
+      <keyword>system</keyword>
+      <keyword>system$</keyword>
+      <keyword>tan</keyword>
+      <keyword>tell</keyword>
+      <keyword>text</keyword>
+      <keyword>time$</keyword>
+      <keyword>to</keyword>
+      <keyword>token</keyword>
+      <keyword>triangle</keyword>
+      <keyword>trim$</keyword>
+      <keyword>val</keyword>
+      <keyword>wait</keyword>
+      <keyword>wend</keyword>
+      <keyword>window origin</keyword>
+      <keyword>xor</keyword>
+    </context>
+
+    <context id="operator" style-ref="operator">
+      <match>\+|-|\*|/|%|\^</match>
+     </context>
+
+    <context id="yabasic" class="no-spell-check">
+      <include>
+        <context ref="bracket"/>
+        <context ref="comment"/>
+        <context ref="string"/>
+	<context ref="number"/>
+        <context ref="keywords"/>
+        <context ref="commands"/>
+	<context ref="operator"/>
+      </include>
+    </context>
+
+  </definitions>
+</language>
